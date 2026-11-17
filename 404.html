@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="robots" content="noindex" />
+  <title>Contact Lost — 404</title>
+  <style>
+    :root { color-scheme: dark; --bg: oklch(15% 0.03 240); --ink: oklch(95% 0.012 220); --ink-2: oklch(80% 0.025 225); --acc: oklch(85% 0.15 172); }
+    * { box-sizing: border-box; }
+    html { background: var(--bg); }
+    body { margin: 0; min-height: 100dvh; display: grid; place-items: center; padding: 24px; background: radial-gradient(40rem 30rem at 50% 40%, oklch(26% 0.06 200 / 0.5), transparent 70%), var(--bg); color: var(--ink-2); font: 1rem/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; text-align: center; }
+    .scope { width: min(240px, 60vw); aspect-ratio: 1; margin: 0 auto 24px; position: relative; }
+    .scope svg { width: 100%; height: 100%; }
+    @media (prefers-reduced-motion: no-preference) { .sweep { transform-origin: 50% 50%; animation: spin 4s linear infinite; } @keyframes spin { to { rotate: 1turn; } } }
+    h1 { color: var(--ink); font-size: clamp(1.8rem, 6vw, 2.6rem); margin: 0 0 8px; }
+    .mono { font: 600 0.75rem ui-monospace, Menlo, monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--acc); }
+    a { display: inline-block; margin-top: 20px; padding: 10px 18px; border-radius: 999px; background: var(--acc); color: oklch(22% 0.05 180); font-weight: 700; text-decoration: none; }
+    a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="scope" aria-hidden="true">
+      <svg viewBox="0 0 200 200"><g fill="none" stroke="#5fe0bd" stroke-opacity=".3"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="64"/><circle cx="100" cy="100" r="32"/><path d="M100 4v192M4 100h192"/></g><g class="sweep"><path d="M100 100 L100 4 A96 96 0 0 1 168 32 Z" fill="#5fe0bd" fill-opacity=".14"/><path d="M100 100 L100 4" stroke="#5fe0bd" stroke-width="2"/></g></svg>
+    </div>
+    <p class="mono">404 · contact lost</p>
+    <h1>Nothing on this bearing.</h1>
+    <p>The page you were tracking has slipped off the picture.</p>
+    <a id="home" href="/">Back to the main picture</a>
+  </main>
+  <script>
+    // On a project site (user.github.io/repo/) home is the first path segment.
+    (function () {
+      var seg = location.pathname.split("/").filter(Boolean)[0];
+      if (!seg || !/\.github\.io$/.test(location.hostname)) return;
+      fetch("/" + seg + "/", { method: "HEAD" }).then(function (r) {
+        if (r.ok) document.getElementById("home").href = "/" + seg + "/";
+      }).catch(function () {});
+    })();
+  </script>
+</body>
+</html>
